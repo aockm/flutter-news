@@ -35,6 +35,21 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_screenutil: ^5.9.3
+  fluttertoast: ^8.2.4
+  
+  # 加密安全 SHA
+  crypto: ^3.0.3
+
+  # 通讯 http
+  dio: ^5.4.0
+  cookie_jar: ^4.0.8
+  dio_cookie_manager: ^3.1.0
+
+  # storage + cache
+  shared_preferences: ^2.1.1
+  cached_network_image: ^3.2.3
+
+  
 
 dev_dependencies:
   flutter_test:

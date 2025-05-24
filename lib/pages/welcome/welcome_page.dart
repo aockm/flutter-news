@@ -5,10 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
-
-  
-  
-
   @override
   State<WelcomePage> createState() => _WelcomePageState();
 }
@@ -101,7 +97,9 @@ class _WelcomePageState extends State<WelcomePage> {
        
         child: Text("Get started"),
         
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/sign-in');
+        },
       ),
     );
   }
