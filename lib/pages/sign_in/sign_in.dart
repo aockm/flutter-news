@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news/common/apis/apis.dart';
 import 'package:flutter_news/common/entitys/entitys.dart';

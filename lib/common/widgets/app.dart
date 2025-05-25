@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/values/values.dart';
+
 
 /// 透明背景 AppBar
-AppBar transparentAppBar({
+PreferredSizeWidget transparentAppBar({
   required BuildContext context,
-  List<Widget>? actions
+  Widget? title,
+  Widget? leading,
+  List<Widget>? actions,
 }) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
-    title: Text(''),
-    leading: IconButton(
-      icon: Icon(
-        Icons.arrow_back,
-        color: AppColors.primaryText,
-      ),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    ),
+    title: title != null
+        ? Center(
+            child: title,
+          )
+        : null,
+    leading: leading,
     actions: actions,
   );
 }
+
