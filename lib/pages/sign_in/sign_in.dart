@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/apis/apis.dart';
 import 'package:flutter_news/common/entitys/entitys.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
@@ -26,17 +30,25 @@ class _SignInPageState extends State<SignInPage> {
 
   // 执行登录操作
   _handleSignIn() async {
-    UserLoginRequestEntity params = UserLoginRequestEntity(
-      email: _emailController.value.text,
-      password: duSHA256(_passController.value.text),
+    var data = {
+       'email': _emailController.value.text,
+       'password': duSHA256(_passController.value.text),
+    };
+    UserLoginResponseEntity userProfile = await UserAPI.login(
+      context: context,
+      params: data,
+      
     );
-    // UserLoginResponseEntity userProfile = await UserAPI.login(
-    //   context: context,
-    //   params: params,
-    // );
-      Navigator.pushNamed(context, '/home');
+    log(duSHA256(_passController.value.text));
+    if(userProfile.code == 200){
+       Navigator.pushNamed(context, '/home');
+    }else {
+      toastInfo(msg: userProfile.info!);
+    }
+    
+      
   }
-
+  
   /// logo
   Widget _buildLogo() {
      return Container(

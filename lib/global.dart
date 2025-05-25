@@ -10,6 +10,7 @@ import 'package:flutter_news/common/values/values.dart';
 class Global {
   /// 用户配置
   static UserLoginResponseEntity? profile = UserLoginResponseEntity(
+    code: 200,
     accessToken: null,
   );
 

@@ -263,7 +263,7 @@ class HttpUtil {
   Future post(
     String path, {
     required BuildContext context,
-    dynamic params,
+    Map<String,dynamic>? params,
     Options? options,
   }) async {
     Options requestOptions = options ?? Options();

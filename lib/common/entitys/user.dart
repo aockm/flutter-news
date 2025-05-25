@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 
 // 登录请求
 class UserLoginRequestEntity {
@@ -24,11 +23,15 @@ class UserLoginRequestEntity {
 
 // 登录返回
 class UserLoginResponseEntity {
+  int code;
+  String? info;
   String? accessToken;
   String? displayName;
   List<String>? channels;
 
   UserLoginResponseEntity({
+    required this.code,
+    this.info,
     required this.accessToken,
     this.displayName,
     this.channels,
@@ -36,9 +39,13 @@ class UserLoginResponseEntity {
 
   factory UserLoginResponseEntity.fromJson(Map<String, dynamic> json) =>
       UserLoginResponseEntity(
-        accessToken: json["access_token"],
-        displayName: json["display_name"],
-        channels: List<String>.from(json["channels"].map((x) => x)),
+        code: json['code'],
+        info: json['info'],
+        accessToken: json["data"]!= null ? json["data"]['accessToken']: null,
+        displayName: json["data"]!= null ? json["data"]["display_name"]: null,
+        channels: json['data'] != null
+          ? List<String>.from(json['data']['channels'])
+          : null,
       );
 
   Map<String, dynamic> toJson() => {
