@@ -49,6 +49,10 @@ dependencies:
   shared_preferences: ^2.1.1
   cached_network_image: ^3.2.3
 
+  # 状态管理
+  provider: 6.1.1
+ 
+
   
 
 dev_dependencies:

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/provider/provider.dart';
 import 'package:flutter_news/pages/welcome/welcome_page.dart';
 import 'package:flutter_news/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AppState(), // 创建 AppState
+      child: MyApp(),
+    ),);
 }
 
 class MyApp extends StatelessWidget {

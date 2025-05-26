@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_news/common/apis/apis.dart';
 import 'package:flutter_news/common/entitys/entitys.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
+import 'package:flutter_news/global.dart';
 
 
 class SignInPage extends StatefulWidget {
@@ -41,8 +40,9 @@ class _SignInPageState extends State<SignInPage> {
         context: context,
         params: data,
       );
-      log(duSHA256(_passController.value.text));
+      
       if(userProfile.code == 200){
+        Global.profile!.displayName = userProfile.displayName;
         Navigator.pushNamed(context, '/home');
       }else {
         toastInfo(msg: userProfile.info!);

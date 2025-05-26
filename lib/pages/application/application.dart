@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
+import 'package:flutter_news/pages/account/account.dart';
+import 'package:flutter_news/pages/bookmarks/bookmarks.dart';
+import 'package:flutter_news/pages/category/category.dart';
 import 'package:flutter_news/pages/main/main.dart';
 
 class ApplicationPage extends StatefulWidget {
@@ -37,14 +40,19 @@ class _ApplicationPageState extends State<ApplicationPage> {
         duration: const Duration(milliseconds: 200), curve: Curves.ease);
   }
 
-   @override
+  @override
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _page);
   }
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   // 底部导航项目
-  final List<BottomNavigationBarItem> _bottomTabs = <BottomNavigationBarItem>[
+ final List<BottomNavigationBarItem> _bottomTabs = <BottomNavigationBarItem>[
     BottomNavigationBarItem(
       icon: Icon(
         Iconfont.home,
@@ -132,14 +140,14 @@ class _ApplicationPageState extends State<ApplicationPage> {
   Widget _buildPageView() {
     return PageView(
       physics: NeverScrollableScrollPhysics(),
-      children: <Widget>[
-        MainPage(),
-        MainPage(),
-        MainPage(),
-        MainPage(),
-      ],
       controller: _pageController,
       onPageChanged: _handlePageChanged,
+      children: <Widget>[
+        MainPage(),
+        CategoryPage(),
+        BookmarksPage(),
+        AccountPage(),
+      ],
     );
   }
   // 底部导航

@@ -217,7 +217,7 @@ class HttpUtil {
   /// list 是否列表 默认 false
   /// cacheKey 缓存key
   /// cacheDisk 是否磁盘缓存
-  Future<Response?> get(
+  Future get(
     String path, {
     required BuildContext context,
     Map<String, dynamic>? params,
@@ -229,15 +229,6 @@ class HttpUtil {
     bool cacheDisk = false,
   }) async {
     Options requestOptions = options ?? Options();
-    // requestOptions = requestOptions.merge(extra: {
-    //   "context": context,
-    //   "refresh": refresh,
-    //   "noCache": noCache,
-    //   "list": list,
-    //   "cacheKey": cacheKey,
-    //   "cacheDisk": cacheDisk,
-    // });
-    // 合并 Options
     requestOptions = requestOptions.copyWith(
       extra: {
         "context": context,

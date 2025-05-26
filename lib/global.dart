@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_news/common/entitys/entitys.dart';
+import 'package:flutter_news/common/provider/provider.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 
@@ -12,6 +13,7 @@ class Global {
   static UserLoginResponseEntity? profile = UserLoginResponseEntity(
     code: 200,
     accessToken: null,
+    displayName: 'Murphy'
   );
 
   /// 是否第一次打开
@@ -21,7 +23,7 @@ class Global {
   static bool isOfflineLogin = false;
 
   /// 应用状态,
-  // static AppState appState = AppState();
+  static AppState appState = AppState();
 
   /// 是否 release
   static bool get isRelease => bool.fromEnvironment("dart.vm.product");
@@ -42,9 +44,9 @@ class Global {
     }
 
     // 读取离线用户信息
-    var _profileJSON = StorageUtil().getJSON(STORAGE_USER_PROFILE_KEY);
-    if (_profileJSON != null) {
-      profile = UserLoginResponseEntity.fromJson(_profileJSON);
+    var profileJSON = StorageUtil().getJSON(STORAGE_USER_PROFILE_KEY);
+    if (profileJSON != null) {
+      profile = UserLoginResponseEntity.fromJson(profileJSON);
       isOfflineLogin = true;
     }
 

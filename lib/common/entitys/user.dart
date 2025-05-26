@@ -42,7 +42,7 @@ class UserLoginResponseEntity {
         code: json['code'],
         info: json['info'],
         accessToken: json["data"]!= null ? json["data"]['accessToken']: null,
-        displayName: json["data"]!= null ? json["data"]["display_name"]: null,
+        displayName: json["data"]!= null ? json["data"]["displayName"]: 'Murphy',
         channels: json['data'] != null
           ? List<String>.from(json['data']['channels'])
           : null,
