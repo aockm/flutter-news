@@ -20,4 +20,20 @@ class UserAPI {
     );
     return UserLoginResponseEntity.fromJson(response);
   }
+
+  /// 注册
+  static Future<Map<String, dynamic>> register({
+    required BuildContext context,
+    Map<String,dynamic>? params,
+  }) async {
+    var response = await HttpUtil().post(
+      '/userInfo/register',
+      context: context,
+      params: params,
+      options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+      ),
+    );
+    return response;
+  }
 }

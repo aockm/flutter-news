@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/apis/apis.dart';
 import 'package:flutter_news/common/utils/utils.dart';
 import 'package:flutter_news/common/values/values.dart';
 import 'package:flutter_news/common/widgets/widgets.dart';
@@ -15,6 +18,38 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _fullnameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+
+   // 执行注册操作
+  _handleSignUp() async {
+    if (!duCheckStringLength(_fullnameController.value.text, 5)) {
+      toastInfo(msg: '用户名不能小于5位');
+      return;
+    }
+    if (!duIsEmail(_emailController.value.text)) {
+      toastInfo(msg: '请正确输入邮件');
+      return;
+    }
+    if (!duCheckStringLength(_passController.value.text, 6)) {
+      toastInfo(msg: '密码不能小于6位');
+      return;
+    }
+    var data = {
+      'username': _fullnameController.value.text,
+      'email': _emailController.value.text,
+      'password': duSHA256(_passController.value.text),
+    };
+    Map<String, dynamic> response = await UserAPI.register(
+      context: context,
+      params: data,
+    );
+    if (response['code'] == 200 ) {
+       Navigator.pop(context);
+    }else {
+      toastInfo(msg: response['info']);
+      return;
+    }
+
+  }
 // logo
   Widget _buildLogo() {
     return Container(
@@ -67,21 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
             height: duSetHeight(44),
             margin: EdgeInsets.only(top: duSetHeight(15)),
             child: btnFlatButtonWidget(
-              onPressed: () {
-                if (!duCheckStringLength(_fullnameController.value.text, 5)) {
-                  toastInfo(msg: '用户名不能小于5位');
-                  return;
-                }
-                if (!duIsEmail(_emailController.value.text)) {
-                  toastInfo(msg: '请正确输入邮件');
-                  return;
-                }
-                if (!duCheckStringLength(_passController.value.text, 6)) {
-                  toastInfo(msg: '密码不能小于6位');
-                  return;
-                }
-                Navigator.pop(context);
-              },
+              onPressed: () => _handleSignUp(),
               width: 295,
               fontWeight: FontWeight.w600,
               title: "Create an account",
@@ -94,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
             height: duSetHeight(32),
             margin: EdgeInsets.only(top: duSetHeight(20)),
             child: TextButton(
-              onPressed: () => {},
+              onPressed: () => _handleSignUp(),
               child: Text(
                 "Fogot password?",
                 textAlign: TextAlign.center,
