@@ -6,5 +6,5 @@ import 'package:flutter_news/pages/sign_up/sign_up.dart';
 var staticRoutes = {
   "/sign-in": (context) => SignInPage(),  // 登录
   "/sign-up": (context) => SignUpPage(),  // 注册
-   "/home": (context) => ApplicationPage(),  // 首页
+   "/app": (context) => ApplicationPage(),  // 首页
 };

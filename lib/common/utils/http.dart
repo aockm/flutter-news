@@ -20,11 +20,11 @@ import 'package:flutter_news/global.dart';
   * https://github.com/flutterchina/dio/blob/master/migration_to_3.0.md
 */
 class HttpUtil {
-  static HttpUtil _instance = HttpUtil._internal();
+  static final HttpUtil _instance = HttpUtil._internal();
   factory HttpUtil() => _instance;
 
   late Dio dio;
-  CancelToken cancelToken = new CancelToken();
+  CancelToken cancelToken = CancelToken();
 
   HttpUtil._internal() {
     // BaseOptions、Options、RequestOptions 都可以配置参数，优先级别依次递增，且可以根据优先级别覆盖参数
@@ -89,7 +89,7 @@ class HttpUtil {
 
     // 在调试模式下需要抓包调试，所以我们使用代理，并禁用HTTPS证书校验
     if (!Global.isRelease && PROXY_ENABLE) {
-      (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+      (dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
           (client) {
         client.findProxy = (uri) {
           return "PROXY $PROXY_IP:$PROXY_PORT";
@@ -97,6 +97,7 @@ class HttpUtil {
         //代理工具会提供一个抓包的自签名证书，会通不过证书校验，所以我们禁用证书校验
         client.badCertificateCallback =
             (X509Certificate cert, String host, int port) => true;
+        return null;
       };
     }
   }
