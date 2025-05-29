@@ -11,13 +11,6 @@ class NewsPageListRequestEntity {
     this.tag,
     this.keyword,
   });
-
-  Map<String, dynamic> toJson() => {
-        "categoryCode": categoryCode,
-        "channelCode": channelCode,
-        "tag": tag,
-        "keyword": keyword,
-      };
 }
 
 /// 新闻分页 response
@@ -90,7 +83,7 @@ class NewsItem {
         "category": category,
         "thumbnail": thumbnail,
         "author": author,
-        "addtime": addtime?.toIso8601String(),
+        "addtime": addtime!.toIso8601String(),
         "url": url,
       };
 }
@@ -108,11 +101,46 @@ class NewsRecommendRequestEntity {
     this.tag,
     this.keyword,
   });
+}
+
+/// 新闻推荐 response
+class NewsRecommendResponseEntity {
+  String? thumbnail;
+  String? title;
+  String? category;
+  DateTime? addtime;
+  String? author;
+  String? url;
+  String? id;
+
+  NewsRecommendResponseEntity({
+    this.thumbnail,
+    this.title,
+    this.category,
+    this.addtime,
+    this.author,
+    this.url,
+    this.id,
+  });
+
+  factory NewsRecommendResponseEntity.fromJson(Map<String, dynamic> json) =>
+      NewsRecommendResponseEntity(
+        thumbnail: json["thumbnail"],
+        title: json["title"],
+        category: json["category"],
+        addtime: DateTime.parse(json["addtime"]),
+        author: json["author"],
+        url: json["url"],
+        id: json["id"],
+      );
 
   Map<String, dynamic> toJson() => {
-        "categoryCode": categoryCode,
-        "channelCode": channelCode,
-        "tag": tag,
-        "keyword": keyword,
+        "thumbnail": thumbnail,
+        "title": title,
+        "category": category,
+        "addtime": addtime!.toIso8601String(),
+        "author": author,
+        "url": url,
+        "id": id,
       };
 }

@@ -1,10 +1,13 @@
-import 'dart:async';
+
+import 'dart:developer';
 
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/apis/apis.dart';
 import 'package:flutter_news/common/entitys/entitys.dart';
 import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
+import 'package:flutter_news/common/widgets/widgets.dart';
+import 'package:flutter_news/pages/main/categories_widget.dart';
 
 
 class MainPage extends StatefulWidget {
@@ -15,62 +18,98 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  late EasyRefreshController _controller ; // EasyRefresh控制器
-
-  late NewsPageListResponseEntity _newsPageList; // 新闻翻页
-  late NewsItem _newsRecommend; // 新闻推荐
+ 
   late List<CategoryResponseEntity> _categories; // 分类
-  late List<ChannelResponseEntity> _channels; // 频道
+ 
+  // bool _loading = true;
 
-  late String _selCategoryCode; // 选中的分类Code
+  String? _selCategoryCode; // 选中的分类Code
+  bool _loading = true;
   
   @override
   void initState() {
-    super.initState();
-    _controller = EasyRefreshController(controlFinishRefresh: true);
+    super.initState();  
     _loadAllData();
-    _loadLatestWithDiskCache();
-  }
-  // 如果有磁盘缓存，延迟3秒拉取更新档案
-  _loadLatestWithDiskCache() {
-    if (CACHE_ENABLE == true) {
-      var cacheData = StorageUtil().getJSON(STORAGE_INDEX_NEWS_CACHE_KEY);
-      if (cacheData != null) {
-        Timer(Duration(seconds: 3), () {
-          _controller.callRefresh();
-        });
-      }
-    }
-  }
- 
-   // 读取所有数据
+  }// 读取所有数据
   _loadAllData() async {
-    // _categories = await NewsAPI.categories(
-    //   context: context,
-    //   cacheDisk: true,
-    // );
-    // _channels = await NewsAPI.channels(
-    //   context: context,
-    //   cacheDisk: true,
-    // );
-    // _newsRecommend = await NewsAPI.newsRecommend(
-    //   context: context,
-    //   cacheDisk: true,
-    // );
-    // _newsPageList = await NewsAPI.newsPageList(
-    //   context: context,
-    //   cacheDisk: true,
-    // );
+    log("初始化数据");
+    _categories = await NewsAPI.categories();
+    // var response = await HttpUtil().get('/home/categories');
+    // log(response["data"]['totalCount'].toString());
+    // _channels = await NewsAPI.channels();
+    // _newsRecommend = await NewsAPI.newsRecommend();
+    // _newsPageList = await NewsAPI.newsPageList();
 
-    // _selCategoryCode = _categories.first.code!;
-
+    _selCategoryCode = _categories.first.code;
+    _loading = false;
+    log(_selCategoryCode!);
     if (mounted) {
       setState(() {});
     }
   }
+
+  // 分类菜单
+  Widget _buildCategories() {
+    if (_loading || _categories == null) {
+      return Center(child: CircularProgressIndicator());
+    }
+    return newsCategoriesWidget(
+      categories: _categories,
+      selCategoryCode: _selCategoryCode,
+      onTap: (CategoryResponseEntity item) {
+        setState(() {
+          _selCategoryCode = item.code!;
+        });
+      },
+    );
+  }
+
+  // 推荐阅读
+  Widget _buildRecommend() {
+    return Container(
+      height: duSetHeight(490),
+      color: Colors.amber,
+    );
+  }
+
+  // 频道
+  Widget _buildChannels() {
+    return Container(
+      height: duSetHeight(137),
+      color: Colors.blueAccent,
+    );
+  }
+
+  // 新闻列表
+  Widget _buildNewsList() {
+    return Container(
+      height: duSetHeight(161 * 5 + 100.0),
+      color: Colors.purple,
+    );
+  }
+
+  // ad 广告条
+  // 邮件订阅
+  Widget _buildEmailSubscribe() {
+    return Container(
+      height: duSetHeight(259),
+      color: Colors.brown,
+    );
+  }
+
   
   @override
   Widget build(BuildContext context) {
-    return Text("hello");
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          _buildCategories(),
+          _buildRecommend(),
+          _buildChannels(),
+          _buildNewsList(),
+          _buildEmailSubscribe(),
+        ],
+      ),
+    );
   }
 }

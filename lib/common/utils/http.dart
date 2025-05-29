@@ -220,7 +220,6 @@ class HttpUtil {
   /// cacheDisk 是否磁盘缓存
   Future get(
     String path, {
-    required BuildContext context,
     Map<String, dynamic>? params,
     Options? options,
     bool refresh = false,
@@ -232,7 +231,6 @@ class HttpUtil {
     Options requestOptions = options ?? Options();
     requestOptions = requestOptions.copyWith(
       extra: {
-        "context": context,
         "refresh": refresh,
         "noCache": noCache,
         "list": list,

@@ -1,3 +1,5 @@
+import 'package:flutter_news/common/entitys/categories.dart';
+
 class Response {
     String status;
     int code;
