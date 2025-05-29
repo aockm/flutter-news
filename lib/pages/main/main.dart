@@ -76,7 +76,9 @@ class _MainPageState extends State<MainPage> {
   Widget _buildChannels() {
     return Container(
       height: duSetHeight(137),
+      width: double.infinity,
       color: Colors.blueAccent,
+      child: Text("频道"),
     );
   }
 
@@ -85,6 +87,7 @@ class _MainPageState extends State<MainPage> {
     return Container(
       height: duSetHeight(161 * 5 + 100.0),
       color: Colors.purple,
+      child: Text("新闻列表"),
     );
   }
 
@@ -93,7 +96,9 @@ class _MainPageState extends State<MainPage> {
   Widget _buildEmailSubscribe() {
     return Container(
       height: duSetHeight(259),
+       width: double.infinity,
       color: Colors.brown,
+      child: Text("邮件订阅"),
     );
   }
 
