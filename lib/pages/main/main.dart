@@ -35,7 +35,10 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    _controller = EasyRefreshController();  
+    _controller = EasyRefreshController(
+      controlFinishRefresh: true,
+      controlFinishLoad: true,
+    );  
     _loadAllData();
   }// 读取所有数据
   _loadAllData() async {
@@ -58,8 +61,9 @@ class _MainPageState extends State<MainPage> {
     bool refresh = false,
   }) async {
     _selCategoryCode = categoryCode;
+    log("categoryCode:$categoryCode");
     _newsRecommend = await NewsAPI.newsRecommend(
-      params: {"categoryCode": categoryCode},
+      
       refresh: refresh,
       cacheDisk: true,
     );

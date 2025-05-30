@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_news/common/utils/utils.dart';
@@ -31,6 +33,9 @@ Widget imageCached(
         child: CircularProgressIndicator(),
       );
     },
-    errorWidget: (context, url, error) => Icon(Icons.error),
+    errorWidget: (context, url, error) {
+      log(url);
+      return Icon(Icons.error);
+    } ,
   );
 }

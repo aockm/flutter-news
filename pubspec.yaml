@@ -57,7 +57,7 @@ dependencies:
   provider: 6.1.1
   
   # 上下拉刷新
-  easy_refresh: ^3.3.2+4
+  easy_refresh: ^3.4.0
   # 骨架屏 替换之前的pk_skeleton
   shimmer: ^3.0.0
   # skeletons: ^0.0.3
