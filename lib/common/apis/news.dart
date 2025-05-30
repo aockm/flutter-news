@@ -6,15 +6,15 @@ class NewsAPI {
   /// 翻页
   static Future<NewsPageListResponseEntity> newsPageList(
       {Map<String,dynamic>? params}) async {
-    var response = await HttpUtil().get('/news', params: params);
-    return NewsPageListResponseEntity.fromJson(response);
+    var response = await HttpUtil().get('/home/news', params: params);
+    return NewsPageListResponseEntity.fromJson(response['data']);
   }
 
   /// 推荐
   static Future<NewsRecommendResponseEntity> newsRecommend(
       {Map<String,dynamic>? params}) async {
-    var response = await HttpUtil().get('/news/recommend', params: params);
-    return NewsRecommendResponseEntity.fromJson(response);
+    var response = await HttpUtil().get('/home/recommend', params: params);
+    return NewsRecommendResponseEntity.fromJson(response['data']);
   }
 
   /// 分类
@@ -28,8 +28,9 @@ class NewsAPI {
 
   /// 频道
   static Future<List<ChannelResponseEntity>> channels() async {
-    var response = await HttpUtil().get('/channels');
-    return response
+    var response = await HttpUtil().get('/home/channels');
+    var dataList = Response.fromJson(response).data['list'];
+    return dataList
         .map<ChannelResponseEntity>(
             (item) => ChannelResponseEntity.fromJson(item))
         .toList();
@@ -37,8 +38,9 @@ class NewsAPI {
 
   /// 标签列表
   static Future<List<TagResponseEntity>> tags({Map<String,dynamic>? params}) async {
-    var response = await HttpUtil().get('/tags', params: params);
-    return response
+    var response = await HttpUtil().get('/home/tags', params: params);
+      var dataList = Response.fromJson(response).data['list'];
+    return dataList
         .map<TagResponseEntity>((item) => TagResponseEntity.fromJson(item))
         .toList();
   }

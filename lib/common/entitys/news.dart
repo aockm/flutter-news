@@ -31,12 +31,12 @@ class NewsPageListResponseEntity {
 
   factory NewsPageListResponseEntity.fromJson(Map<String, dynamic> json) =>
       NewsPageListResponseEntity(
-        counts: json["counts"],
-        pagesize: json["pagesize"],
-        pages: json["pages"],
-        page: json["page"],
+        counts: json["totalCount"],
+        pagesize: json["pageSize"],
+        pages: json["pageTotal"],
+        page: json["pageNo"],
         items:
-            List<NewsItem>.from(json["items"].map((x) => NewsItem.fromJson(x))),
+            List<NewsItem>.from(json["list"].map((x) => NewsItem.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -73,7 +73,7 @@ class NewsItem {
         category: json["category"],
         thumbnail: json["thumbnail"],
         author: json["author"],
-        addtime: DateTime.parse(json["addtime"]),
+        addtime: DateTime.parse(json["addTime"]),
         url: json["url"],
       );
 
@@ -128,7 +128,7 @@ class NewsRecommendResponseEntity {
         thumbnail: json["thumbnail"],
         title: json["title"],
         category: json["category"],
-        addtime: DateTime.parse(json["addtime"]),
+        addtime: DateTime.parse(json["addTime"]),
         author: json["author"],
         url: json["url"],
         id: json["id"],

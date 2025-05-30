@@ -18,10 +18,10 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
- 
+  late NewsPageListResponseEntity _newsPageList; // 新闻翻页
   late List<CategoryResponseEntity> _categories; // 分类
- 
-  // bool _loading = true;
+  late NewsRecommendResponseEntity _newsRecommend; // 新闻推荐
+  late List<ChannelResponseEntity> _channels; // 频道
 
   String? _selCategoryCode; // 选中的分类Code
   bool _loading = true;
@@ -34,11 +34,9 @@ class _MainPageState extends State<MainPage> {
   _loadAllData() async {
     log("初始化数据");
     _categories = await NewsAPI.categories();
-    // var response = await HttpUtil().get('/home/categories');
-    // log(response["data"]['totalCount'].toString());
-    // _channels = await NewsAPI.channels();
-    // _newsRecommend = await NewsAPI.newsRecommend();
-    // _newsPageList = await NewsAPI.newsPageList();
+    _channels = await NewsAPI.channels();
+    _newsRecommend = await NewsAPI.newsRecommend();
+    _newsPageList = await NewsAPI.newsPageList();
 
     _selCategoryCode = _categories.first.code;
     _loading = false;
@@ -50,7 +48,7 @@ class _MainPageState extends State<MainPage> {
 
   // 分类菜单
   Widget _buildCategories() {
-    if (_loading || _categories == null) {
+    if (_loading || _categories == null || _newsPageList == null || _newsRecommend==null||_channels==null) {
       return Center(child: CircularProgressIndicator());
     }
     return newsCategoriesWidget(
