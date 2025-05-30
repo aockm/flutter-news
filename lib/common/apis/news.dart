@@ -4,15 +4,21 @@ import 'package:flutter_news/common/utils/utils.dart';
 /// 新闻
 class NewsAPI {
   /// 翻页
-  static Future<NewsPageListResponseEntity> newsPageList(
-      {Map<String,dynamic>? params}) async {
+  static Future<NewsPageListResponseEntity> newsPageList({
+    Map<String,dynamic>? params,
+    bool refresh = false,
+    bool cacheDisk = false,
+  }) async {
     var response = await HttpUtil().get('/home/news', params: params);
     return NewsPageListResponseEntity.fromJson(response['data']);
   }
 
   /// 推荐
-  static Future<NewsRecommendResponseEntity> newsRecommend(
-      {Map<String,dynamic>? params}) async {
+  static Future<NewsRecommendResponseEntity> newsRecommend({
+    Map<String,dynamic>? params,
+    bool refresh = false,
+    bool cacheDisk = false
+  }) async {
     var response = await HttpUtil().get('/home/recommend', params: params);
     return NewsRecommendResponseEntity.fromJson(response['data']);
   }
