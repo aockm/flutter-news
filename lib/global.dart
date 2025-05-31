@@ -1,7 +1,7 @@
-import 'dart:io';
+
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_news/common/entitys/entitys.dart';
 import 'package:flutter_news/common/provider/provider.dart';
 import 'package:flutter_news/common/utils/utils.dart';
@@ -46,16 +46,18 @@ class Global {
     // 读取离线用户信息
     var profileJSON = StorageUtil().getJSON(STORAGE_USER_PROFILE_KEY);
     if (profileJSON != null) {
+      log("读取离线用户信息");
       profile = UserLoginResponseEntity.fromJson(profileJSON);
+      log(profile!.accessToken!);
       isOfflineLogin = true;
     }
 
     // android 状态栏为透明的沉浸
-    if (Platform.isAndroid) {
-      SystemUiOverlayStyle systemUiOverlayStyle =
-          SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-      SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-    }
+    // if (Platform.isAndroid) {
+    //   SystemUiOverlayStyle systemUiOverlayStyle =
+    //       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+    // }
   }
 
   // 持久化 用户信息

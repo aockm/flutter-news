@@ -6,6 +6,7 @@ import 'package:flutter_news/pages/account/account.dart';
 import 'package:flutter_news/pages/bookmarks/bookmarks.dart';
 import 'package:flutter_news/pages/category/category.dart';
 import 'package:flutter_news/pages/main/main.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ApplicationPage extends StatefulWidget {
   const ApplicationPage({super.key});
@@ -116,15 +117,6 @@ class _ApplicationPageState extends State<ApplicationPage> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        // leading: IconButton(
-        //   icon: Icon(
-        //     Icons.arrow_back,
-        //     color: AppColors.primaryText,
-        //   ),
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //   },
-        // ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -133,7 +125,8 @@ class _ApplicationPageState extends State<ApplicationPage> {
             ),
             onPressed: () {},
           )
-        ]);
+        ]
+    );
   }
 
   // 内容页
@@ -167,6 +160,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       appBar: _buildAppBar(),
       body: _buildPageView(),

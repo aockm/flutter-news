@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news/global.dart';
@@ -17,17 +19,8 @@ class IndexPage extends StatefulWidget {
 class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
-    // ScreenUtil.init(
-    //   context,
-    //   width: 375,
-    //   height: 812 - 44 - 34,
-    //   allowFontScaling: true,
-    // );
-    ScreenUtilInit(
-      designSize: Size(375, 812 - 44 - 34), // UI设计稿的尺寸（逻辑像素）
-      minTextAdapt: true,
-      splitScreenMode: true,
-    );
+    ScreenUtil.init(context,
+    designSize: Size(375, 812 - 44 - 34));
     return Scaffold(
       body: Global.isFirstOpen == true
           ? WelcomePage()

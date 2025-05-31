@@ -107,9 +107,7 @@ class _WelcomePageState extends State<WelcomePage> {
   }
   @override
   Widget build(BuildContext context) {
-    // 高度去掉 顶部、底部 导航
-    ScreenUtil.init(context,
-    designSize: Size(375, 812 - 44 - 34));
+    
     return Scaffold(
       
       body: Center(

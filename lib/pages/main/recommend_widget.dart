@@ -15,8 +15,8 @@ Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
         // 图
         imageCached(
           newsRecommend.thumbnail!,
-          width: duSetWidth(335),
-          height: duSetHeight(290),
+          width: 335,
+          height: 290,
         ),
         // 作者
         Container(
