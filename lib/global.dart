@@ -48,7 +48,7 @@ class Global {
     if (profileJSON != null) {
       log("读取离线用户信息");
       profile = UserLoginResponseEntity.fromJson(profileJSON);
-      log(profile!.accessToken!);
+      log(profile!.accessToken??"error");
       isOfflineLogin = true;
     }
 

@@ -39,8 +39,8 @@ class UserLoginResponseEntity {
 
   factory UserLoginResponseEntity.fromJson(Map<String, dynamic> json) =>
       UserLoginResponseEntity(
-        code: json['code'],
-        info: json['info'],
+        code: 200,
+        info: "请求成功",
         accessToken: json["data"]!= null ? json["data"]['accessToken']: null,
         displayName: json["data"]!= null ? json["data"]["displayName"]: 'Murphy',
         channels: json['data'] != null
