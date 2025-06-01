@@ -18,6 +18,7 @@ plugins {
 
 android {
     namespace = "com.tockm.news"
+    namespace = "com.tockm.news"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"   
 

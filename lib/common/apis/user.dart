@@ -18,7 +18,12 @@ class UserAPI {
           contentType: Headers.formUrlEncodedContentType,
       ),
     );
-    return UserLoginResponseEntity.fromJson(response);
+    
+    if (response['data'] == null) {
+      return UserLoginResponseEntity.fromJson(null,code:response['code'],info:response['info']);
+    }
+    return UserLoginResponseEntity.fromJson(response['data']);
+    
   }
 
   /// 注册
