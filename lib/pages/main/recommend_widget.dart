@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/entitys/entitys.dart';
-import 'package:flutter_news/common/utils/date.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
-import 'package:flutter_news/common/widgets/widgets.dart';
+import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/utils/date.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
+import 'package:news/common/widgets/widgets.dart';
 
 // 推荐阅读
 Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {

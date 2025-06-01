@@ -2,18 +2,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/entitys/entitys.dart';
-import 'package:flutter_news/common/provider/provider.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
+import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/provider/provider.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
 
 /// 全局配置
 class Global {
   /// 用户配置
-  static UserLoginResponseEntity? profile = UserLoginResponseEntity(
-    code: 200,
-    accessToken: null,
-    displayName: 'Murphy'
+  static UserInfo? profile = UserInfo(
+    accessToken: '',
+    displayName: 'Murphy',
+    channels: []
   );
 
   /// 是否第一次打开
@@ -47,8 +47,9 @@ class Global {
     var profileJSON = StorageUtil().getJSON(STORAGE_USER_PROFILE_KEY);
     if (profileJSON != null) {
       log("读取离线用户信息");
-      profile = UserLoginResponseEntity.fromJson(profileJSON);
-      log(profile!.accessToken??"error");
+      log(profileJSON.toString());
+      profile = UserInfo.fromJson(profileJSON);
+     
       isOfflineLogin = true;
     }
 
@@ -61,9 +62,9 @@ class Global {
   }
 
   // 持久化 用户信息
-  static Future<bool> saveProfile(UserLoginResponseEntity userResponse) {
-    profile = userResponse;
+  static Future<bool> saveProfile(UserInfo userInfo) {
+    profile = userInfo;
     return StorageUtil()
-        .setJSON(STORAGE_USER_PROFILE_KEY, userResponse.toJson());
+        .setJSON(STORAGE_USER_PROFILE_KEY, userInfo.toJson());
   }
 }

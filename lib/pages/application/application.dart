@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
-import 'package:flutter_news/common/widgets/widgets.dart';
-import 'package:flutter_news/pages/account/account.dart';
-import 'package:flutter_news/pages/bookmarks/bookmarks.dart';
-import 'package:flutter_news/pages/category/category.dart';
-import 'package:flutter_news/pages/main/main.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
+import 'package:news/common/widgets/widgets.dart';
+import 'package:news/pages/account/account.dart';
+import 'package:news/pages/bookmarks/bookmarks.dart';
+import 'package:news/pages/category/category.dart';
+import 'package:news/pages/main/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ApplicationPage extends StatefulWidget {

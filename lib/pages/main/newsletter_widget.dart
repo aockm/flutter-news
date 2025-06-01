@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
-import 'package:flutter_news/common/widgets/widgets.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
+import 'package:news/common/widgets/widgets.dart';
 
 Widget newsletterWidget() {
   return Container(

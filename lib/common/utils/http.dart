@@ -5,10 +5,10 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/io.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
-import 'package:flutter_news/common/widgets/widgets.dart';
-import 'package:flutter_news/global.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
+import 'package:news/common/widgets/widgets.dart';
+import 'package:news/global.dart';
 
 /*
   * http 操作类

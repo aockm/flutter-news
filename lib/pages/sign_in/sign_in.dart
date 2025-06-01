@@ -1,12 +1,12 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/apis/apis.dart';
-import 'package:flutter_news/common/entitys/entitys.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
-import 'package:flutter_news/common/widgets/widgets.dart';
-import 'package:flutter_news/global.dart';
+import 'package:news/common/apis/apis.dart';
+import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
+import 'package:news/common/widgets/widgets.dart';
+import 'package:news/global.dart';
 
 @RoutePage()
 class SignInPage extends StatefulWidget {
@@ -39,6 +39,12 @@ class _SignInPageState extends State<SignInPage> {
     // Navigator.pushNamed(context, '/app');
     if (data['email'] == '3504747913@qq.com'  
       && data['password'] == '1f5b20f670a47e10fed7ecaa9f004bad3208259594ace98ab320f857aacc7fb2') {
+      UserInfo userInfo = UserInfo(
+        accessToken: "123",
+        displayName: "yh",
+        channels: ["bbc", "bloomberg"],
+      );
+      Global.saveProfile(userInfo);
       Navigator.pushNamed(context, '/app');
     }else {
       UserLoginResponseEntity userProfile = await UserAPI.login(
@@ -47,7 +53,12 @@ class _SignInPageState extends State<SignInPage> {
       );
       
       if(userProfile.code == 200){
-        Global.saveProfile(userProfile);
+        UserInfo userInfo = UserInfo(
+        accessToken: userProfile.accessToken!,
+        displayName: userProfile.displayName!,
+        channels: userProfile.channels!,
+      );
+        Global.saveProfile(userInfo);
         Navigator.pushNamed(context, '/app');
       }else {
         toastInfo(msg: userProfile.info!);

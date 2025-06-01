@@ -3,15 +3,15 @@ import 'dart:developer';
 
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/apis/apis.dart';
-import 'package:flutter_news/common/entitys/entitys.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/pages/main/ad_widget.dart';
-import 'package:flutter_news/pages/main/categories_widget.dart';
-import 'package:flutter_news/pages/main/channels_widget.dart';
-import 'package:flutter_news/pages/main/news_item_widget.dart';
-import 'package:flutter_news/pages/main/newsletter_widget.dart';
-import 'package:flutter_news/pages/main/recommend_widget.dart';
+import 'package:news/common/apis/apis.dart';
+import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/pages/main/ad_widget.dart';
+import 'package:news/pages/main/categories_widget.dart';
+import 'package:news/pages/main/channels_widget.dart';
+import 'package:news/pages/main/news_item_widget.dart';
+import 'package:news/pages/main/newsletter_widget.dart';
+import 'package:news/pages/main/recommend_widget.dart';
 
 
 class MainPage extends StatefulWidget {

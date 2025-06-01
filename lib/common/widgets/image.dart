@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
 
 /// 缓存图片
 Widget imageCached(

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/entitys/entitys.dart';
-import 'package:flutter_news/common/utils/utils.dart';
+import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/utils/utils.dart';
 
 /// 用户
 class UserAPI {

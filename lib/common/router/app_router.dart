@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_news/pages/index/index.dart';
-import 'package:flutter_news/pages/sign_in/sign_in.dart';
-import 'package:flutter_news/pages/sign_up/sign_up.dart';
-import 'package:flutter_news/pages/welcome/welcome_page.dart';
+import 'package:news/pages/index/index.dart';
+import 'package:news/pages/sign_in/sign_in.dart';
+import 'package:news/pages/sign_up/sign_up.dart';
+import 'package:news/pages/welcome/welcome_page.dart';
 
 part 'app_router.gr.dart';
 

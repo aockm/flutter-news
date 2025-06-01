@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/utils/utils.dart';
-import 'package:flutter_news/common/values/values.dart';
+import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
 
 /// 输入框
 Widget inputTextEdit({

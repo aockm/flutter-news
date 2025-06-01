@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/utils/utils.dart';
+import 'package:news/common/utils/utils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 Future<bool?> toastInfo({

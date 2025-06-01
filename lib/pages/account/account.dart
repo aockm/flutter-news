@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/provider/provider.dart';
-import 'package:flutter_news/global.dart';
+import 'package:news/common/provider/provider.dart';
+import 'package:news/global.dart';
 import 'package:provider/provider.dart';
 
 
