@@ -226,15 +226,17 @@ class HttpUtil {
   /// cacheDisk 是否磁盘缓存
   Future get(
     String path, {
+    required BuildContext context,
     Map<String, dynamic>? params,
     Options? options,
     bool refresh = false,
     bool noCache = !CACHE_ENABLE,
     bool list = false,
     String? cacheKey,
-    bool cacheDisk =false, required BuildContext context,
+    bool cacheDisk = false, 
   }) async {
-    log("cacheDisk:$cacheDisk");
+    log("get()cacheDisk:$cacheDisk");
+    log("get()refresh:$refresh");
     Options requestOptions = options ?? Options();
     requestOptions = requestOptions.copyWith(
       extra: {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:news/common/entitys/entitys.dart';
 import 'package:news/common/utils/utils.dart';
@@ -33,7 +35,9 @@ class NewsAPI {
     var response = await HttpUtil().get(
       '/home/recommend',
       context: context,
-      params: params
+      params: params,
+      refresh: refresh,
+      cacheDisk: cacheDisk,
     );
     return NewsRecommendResponseEntity.fromJson(response['data']);
   }
@@ -43,10 +47,12 @@ class NewsAPI {
     required BuildContext context,
     bool cacheDisk = false,
     } ) async {
+    log("HttpUtil().get:$cacheDisk");
     var response = await HttpUtil().get(
       '/home/categories',
       context: context,
-      cacheDisk: cacheDisk,);
+      cacheDisk: cacheDisk,
+    );
     var dataList = Response.fromJson(response).data['list'];
     return dataList.map<CategoryResponseEntity>(
             (item) => CategoryResponseEntity.fromJson(item))
@@ -61,6 +67,7 @@ class NewsAPI {
     var response = await HttpUtil().get(
       '/home/channels',
       context: context,
+      cacheDisk: cacheDisk,
     );
     var dataList = Response.fromJson(response).data['list'];
     return dataList

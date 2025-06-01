@@ -39,20 +39,22 @@ class NetCache extends Interceptor {
       log("下拉刷新，先删除相关缓存");
       if (options.extra["list"] == true) {
         //若是列表，则只要url中包含当前path的缓存全部删除（简单实现，并不精准）
+        log("刷新删除list:${options.path}");
         cache.removeWhere((key, v) => key.contains(options.path));
       } else {
+        log("刷新删除:${options.path}");
         // 如果不是列表，则只删除uri相同的缓存
         delete(options.uri.toString());
       }
 
       // 删除磁盘缓存
       if (cacheDisk) {
+        log("删除磁盘缓存");
         await StorageUtil().remove(options.uri.toString());
       }
-
-      handler.next(options);
     }
 
+    log("${options.extra["noCache"]} ${options.method.toLowerCase()}");
     // get 请求，开启缓存
     if (options.extra["noCache"] != true &&
       options.method.toLowerCase() == 'get') {
@@ -79,6 +81,7 @@ class NetCache extends Interceptor {
       if (cacheDisk) {
         log("磁盘缓存");
         var cacheData = StorageUtil().getJSON(key);
+        // log("cacheData:$cacheData");
         if (cacheData != null) {
           log("返回磁盘缓存内容:$key");
           return handler.resolve(Response(
@@ -88,10 +91,9 @@ class NetCache extends Interceptor {
           ));
         }
       }
-      // 没有缓存，继续网络请求
-      handler.next(options);
+      
     }
-    log("其他请求");
+    log("其他请求:${options.path}");
     handler.next(options);
   }
 

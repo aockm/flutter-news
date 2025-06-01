@@ -174,6 +174,7 @@ class _MainPageState extends State<MainPage> {
       controller: _controller,
       header: const ClassicHeader(),
       onRefresh: () async {
+        log("=====下拉刷新====");
         await _loadNewsData(
           _selCategoryCode,
           refresh: true,
