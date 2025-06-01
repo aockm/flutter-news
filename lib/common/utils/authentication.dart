@@ -20,7 +20,7 @@ Future deleteAuthentication() async {
 /// 重新登录
 Future goLoginPage(BuildContext context) async {
   await deleteAuthentication();
-  // ExtendedNavigator.rootNavigator.pushNamedAndRemoveUntil(
-  //     Routes.signInPageRoute, (Route<dynamic> route) => false);
-   Navigator.pushNamed(context, '/sign-in');
+  Navigator.pushNamedAndRemoveUntil(
+      context,"/sign-in", (Route<dynamic> route) => false);
+  
 }

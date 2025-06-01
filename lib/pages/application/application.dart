@@ -159,7 +159,6 @@ class _ApplicationPageState extends State<ApplicationPage> {
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       appBar: _buildAppBar(),
       body: _buildPageView(),

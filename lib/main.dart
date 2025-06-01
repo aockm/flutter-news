@@ -8,7 +8,16 @@ import 'package:provider/provider.dart';
 void main() => Global.init().then((e) => runApp(
   ChangeNotifierProvider(
       create: (_) => AppState(),
-      child: MyApp(),
+      child: Consumer<AppState>(builder: (context, appState, _) {
+          if (appState.isGrayFilter) {
+            return ColorFiltered(
+              colorFilter: ColorFilter.mode(Colors.white, BlendMode.color),
+              child: MyApp(),
+            );
+          } else {
+            return MyApp();
+          }
+        }),
     ),
 ));
 class MyApp extends StatelessWidget {

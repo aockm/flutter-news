@@ -64,7 +64,7 @@ class _MainPageState extends State<MainPage> {
     _selCategoryCode = categoryCode;
     log("categoryCode:$categoryCode");
     _newsRecommend = await NewsAPI.newsRecommend(
-      
+      params:{"category":categoryCode},
       refresh: refresh,
       cacheDisk: true,
     );

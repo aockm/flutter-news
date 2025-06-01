@@ -48,7 +48,6 @@ class Global {
       log("读取离线用户信息");
       log(profileJSON.toString());
       profile = UserInfo.fromJson(profileJSON);
-     
       isOfflineLogin = true;
     }
 
