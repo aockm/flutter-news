@@ -62,10 +62,13 @@ class _MainPageState extends State<MainPage> {
   // 读取所有数据
   _loadAllData() async {
     log("初始化数据");
-    _categories = await NewsAPI.categories();
-    _channels = await NewsAPI.channels();
-    _newsRecommend = await NewsAPI.newsRecommend();
-    _newsPageList = await NewsAPI.newsPageList();
+    _categories = await NewsAPI.categories(context: context,cacheDisk: true,);
+
+    _channels = await NewsAPI.channels(context: context,cacheDisk: true,);
+
+    _newsRecommend = await NewsAPI.newsRecommend(context: context,cacheDisk: true,);
+    
+    _newsPageList = await NewsAPI.newsPageList(context: context,cacheDisk: true,);
 
     _selCategoryCode = _categories.first.code;
     _loading = false;
@@ -82,11 +85,13 @@ class _MainPageState extends State<MainPage> {
     _selCategoryCode = categoryCode;
     log("categoryCode:$categoryCode");
     _newsRecommend = await NewsAPI.newsRecommend(
+      context: context,
       params:{"category":categoryCode},
       refresh: refresh,
       cacheDisk: true,
     );
     _newsPageList = await NewsAPI.newsPageList(
+       context: context,
       params: {"categoryCode": categoryCode},
       refresh: refresh,
       cacheDisk: true,

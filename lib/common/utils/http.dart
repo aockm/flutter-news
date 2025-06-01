@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
@@ -59,6 +60,9 @@ class HttpUtil {
     CookieJar cookieJar = CookieJar();
     dio.interceptors.add(CookieManager(cookieJar));
 
+   
+   
+
     // 添加拦截器
     dio.interceptors.add(InterceptorsWrapper(
           onRequest: (options,handler) {
@@ -69,23 +73,25 @@ class HttpUtil {
           }, 
           onError: (DioException e,handle) {
             ErrorEntity eInfo = createErrorEntity(e);
-              // 错误提示
-              toastInfo(msg: eInfo.message!);
-              // 错误交互处理
-              var context = e.requestOptions.extra["context"];
-              if (context != null) {
-                switch (eInfo.code) {
-                  case 401: // 没有权限 重新登录
-                    goLoginPage(context);
-                    break;
-                  default:
-                }
+            // 错误提示
+            log(eInfo.message!);
+            toastInfo(msg: eInfo.message!);
+            // 错误交互处理
+            var context = e.requestOptions.extra["context"];
+            log("context:$context");
+            if (context != null) {
+              log("错误交互处理");
+              switch (eInfo.code) {
+                case 401: // 没有权限 重新登录
+                  goLoginPage(context);
+                  break;
+                default:
               }
-             return handle.next(e);
-          }));
+            }
+      }));
 
-    // 加内存缓存
-    // dio.interceptors.add(NetCache());
+     // 加内存缓存
+    dio.interceptors.add(NetCache());
 
     // 在调试模式下需要抓包调试，所以我们使用代理，并禁用HTTPS证书校验
     if (!Global.isRelease && PROXY_ENABLE) {
@@ -204,7 +210,7 @@ class HttpUtil {
   /// 读取本地配置
   Map<String, dynamic>? getAuthorizationHeader() {
     Map<String, String> headers;
-    String? accessToken = Global.profile!.accessToken;
+    String? accessToken = Global.profile?.accessToken;
     if (accessToken != null) {
       // headers = 
       return {'Authorization': 'Bearer $accessToken'};
@@ -226,8 +232,9 @@ class HttpUtil {
     bool noCache = !CACHE_ENABLE,
     bool list = false,
     String? cacheKey,
-    bool cacheDisk = false,
+    bool cacheDisk =false, required BuildContext context,
   }) async {
+    log("cacheDisk:$cacheDisk");
     Options requestOptions = options ?? Options();
     requestOptions = requestOptions.copyWith(
       extra: {
@@ -242,7 +249,8 @@ class HttpUtil {
       requestOptions = requestOptions.copyWith(headers: authorization);
     }
 
-    var response = await dio.get(path,
+    var response = await dio.get(
+        path,
         queryParameters: params,
         options: requestOptions,
         cancelToken: cancelToken);

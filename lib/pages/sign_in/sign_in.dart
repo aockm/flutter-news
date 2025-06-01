@@ -1,4 +1,6 @@
 
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/common/apis/apis.dart';
@@ -34,7 +36,7 @@ class _SignInPageState extends State<SignInPage> {
        'email': _emailController.value.text,
        'password': duSHA256(_passController.value.text),
     };
-    // log(data['password']!);
+    log(data['password']!);
     //  && data['password'] == '1f5b20f670a47e10fed7ecaa9f004bad3208259594ace98ab320f857aacc7fb2' 
     // Navigator.pushNamed(context, '/app');
     if (data['email'] == '3504747913@qq.com'  
@@ -51,7 +53,7 @@ class _SignInPageState extends State<SignInPage> {
         context: context,
         params: data,
       );
-      
+      log(userProfile.code.toString());
       if(userProfile.code == 200){
         UserInfo userInfo = UserInfo(
         accessToken: userProfile.accessToken!,
