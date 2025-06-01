@@ -11,7 +11,7 @@ class ChannelResponseEntity {
   factory ChannelResponseEntity.fromJson(Map<String, dynamic> json) =>
       ChannelResponseEntity(
         code: json["code"],
-        title: json["title"],
+        title: json["channel"],
       );
 
   Map<String, dynamic> toJson() => {
