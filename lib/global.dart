@@ -11,7 +11,6 @@ import 'package:news/common/values/values.dart';
 class Global {
   /// 用户配置
   static UserInfo? profile = UserInfo(
-    accessToken: '',
     displayName: 'Murphy',
     channels: []
   );

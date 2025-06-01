@@ -37,7 +37,7 @@ class UserLoginResponseEntity {
     this.channels,
   });
 
-  factory UserLoginResponseEntity.fromJson(Map<String, dynamic>? json,{int code=200,String info='成功'}) =>
+  factory UserLoginResponseEntity.fromJson(Map<String, dynamic> json) =>
       UserLoginResponseEntity(
         code: json['code'],
         info: json["info"],
@@ -56,12 +56,12 @@ class UserLoginResponseEntity {
 }
 
 class UserInfo {
-    String accessToken;
+    String? accessToken;
     String displayName;
     List<String> channels;
 
     UserInfo({
-        required this.accessToken,
+        this.accessToken,
         required this.displayName,
         required this.channels,
     });

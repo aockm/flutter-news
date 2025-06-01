@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage> {
   }
   // 分类菜单
   Widget _buildCategories() {
-    if (_loading || _categories == null) {
+    if (_loading) {
       return Center(child: CircularProgressIndicator());
     }
     return newsCategoriesWidget(
@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> {
 
   // 推荐阅读
   Widget _buildRecommend() {
-    if (_loading || _newsRecommend==null) {
+    if (_loading) {
       return Center(child: CircularProgressIndicator());
     }
     return recommendWidget(_newsRecommend);
@@ -102,7 +102,7 @@ class _MainPageState extends State<MainPage> {
 
   // 频道
   Widget _buildChannels() {
-     if (_loading || _channels==null) {
+     if (_loading) {
       return Center(child: CircularProgressIndicator());
     }
     return newsChannelsWidget(
@@ -113,7 +113,7 @@ class _MainPageState extends State<MainPage> {
 
   // 新闻列表
   Widget _buildNewsList() {
-     if (_loading || _newsPageList == null) {
+     if (_loading) {
       return Container(height: duSetHeight(161 * 5 + 100.0),);
     }
     return Column(

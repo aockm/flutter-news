@@ -61,7 +61,7 @@ Widget newsletterWidget() {
           child: Text.rich(TextSpan(children: <TextSpan>[
             TextSpan(
               text: 'By clicking on Subscribe button you agree to accept',
-              style: new TextStyle(
+              style: TextStyle(
                 color: AppColors.thirdElementText,
                 fontFamily: "Avenir",
                 fontWeight: FontWeight.w400,
@@ -70,7 +70,7 @@ Widget newsletterWidget() {
             ),
             TextSpan(
               text: ' Privacy Policy',
-              style: new TextStyle(
+              style: TextStyle(
                 color: AppColors.secondaryElementText,
                 fontFamily: "Avenir",
                 fontWeight: FontWeight.w400,

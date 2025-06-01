@@ -6,7 +6,6 @@ import 'package:news/pages/account/account.dart';
 import 'package:news/pages/bookmarks/bookmarks.dart';
 import 'package:news/pages/category/category.dart';
 import 'package:news/pages/main/main.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ApplicationPage extends StatefulWidget {
   const ApplicationPage({super.key});

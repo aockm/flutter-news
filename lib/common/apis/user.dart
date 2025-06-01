@@ -19,10 +19,7 @@ class UserAPI {
       ),
     );
     
-    if (response['data'] == null) {
-      return UserLoginResponseEntity.fromJson(null,code:response['code'],info:response['info']);
-    }
-    return UserLoginResponseEntity.fromJson(response['data']);
+    return UserLoginResponseEntity.fromJson(response);
     
   }
 
