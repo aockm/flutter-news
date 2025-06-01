@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:easy_refresh/easy_refresh.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:news/common/apis/apis.dart';
 import 'package:news/common/entitys/entitys.dart';
 import 'package:news/common/utils/utils.dart';
+import 'package:news/common/values/values.dart';
 import 'package:news/pages/main/ad_widget.dart';
 import 'package:news/pages/main/categories_widget.dart';
 import 'package:news/pages/main/channels_widget.dart';
@@ -41,7 +43,23 @@ class _MainPageState extends State<MainPage> {
       controlFinishLoad: true,
     );  
     _loadAllData();
-  }// 读取所有数据
+    _loadLatestWithDiskCache();
+  }
+  
+  // 如果有磁盘缓存，延迟1秒拉取更新档案
+  _loadLatestWithDiskCache() {
+    if (CACHE_ENABLE == true) {
+      var cacheData = StorageUtil().getJSON(STORAGE_INDEX_NEWS_CACHE_KEY);
+      if (cacheData != null) {
+        Timer(Duration(seconds: 1), () {
+          _controller.callRefresh();
+        });
+      }
+    }
+  }
+  
+  
+  // 读取所有数据
   _loadAllData() async {
     log("初始化数据");
     _categories = await NewsAPI.categories();
