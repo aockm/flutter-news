@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:news/common/router/router.dart';
 import 'package:news/common/utils/utils.dart';
 import 'package:news/common/values/values.dart';
 
@@ -95,11 +96,10 @@ class _WelcomePageState extends State<WelcomePage> {
           borderRadius: BorderRadius.all(Radius.circular(duSetWidth(6))),
         ),
         ),
-       
         child: Text("Get started"),
-        
         onPressed: () {
-          Navigator.pushNamed(context, '/sign-in');
+          // Navigator.pushNamed(context, '/sign-in');
+          context.pushRoute(SignInRoute()); // 使用自动生成的类跳转
         },
       ),
     );

@@ -39,6 +39,7 @@ class NewsAPI {
       refresh: refresh,
       cacheDisk: cacheDisk,
     );
+   
     return NewsRecommendResponseEntity.fromJson(response['data']);
   }
 
@@ -69,6 +70,7 @@ class NewsAPI {
       context: context,
       cacheDisk: cacheDisk,
     );
+    
     var dataList = Response.fromJson(response).data['list'];
     return dataList
         .map<ChannelResponseEntity>(

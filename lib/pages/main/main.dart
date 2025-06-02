@@ -8,6 +8,7 @@ import 'package:news/common/apis/apis.dart';
 import 'package:news/common/entitys/entitys.dart';
 import 'package:news/common/utils/utils.dart';
 import 'package:news/common/values/values.dart';
+import 'package:news/common/widgets/widgets.dart';
 import 'package:news/pages/main/ad_widget.dart';
 import 'package:news/pages/main/categories_widget.dart';
 import 'package:news/pages/main/channels_widget.dart';
@@ -72,7 +73,7 @@ class _MainPageState extends State<MainPage> {
 
     _selCategoryCode = _categories.first.code;
     _loading = false;
-    log(_selCategoryCode!);
+
     if (mounted) {
       setState(() {});
     }
@@ -120,7 +121,7 @@ class _MainPageState extends State<MainPage> {
     if (_loading) {
       return Center(child: CircularProgressIndicator());
     }
-    return recommendWidget(_newsRecommend);
+    return recommendWidget(context,_newsRecommend);
   }
 
   // 频道
@@ -170,11 +171,12 @@ class _MainPageState extends State<MainPage> {
   
   @override
   Widget build(BuildContext context) {
-    return EasyRefresh(
+    return _loading 
+    ?cardListSkeletonWithShimmer()
+    :EasyRefresh(
       controller: _controller,
       header: const ClassicHeader(),
       onRefresh: () async {
-        log("=====下拉刷新====");
         await _loadNewsData(
           _selCategoryCode,
           refresh: true,

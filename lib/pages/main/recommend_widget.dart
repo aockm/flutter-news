@@ -1,23 +1,31 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/router/router.dart';
 import 'package:news/common/utils/date.dart';
 import 'package:news/common/utils/utils.dart';
 import 'package:news/common/values/values.dart';
 import 'package:news/common/widgets/widgets.dart';
 
 // 推荐阅读
-Widget recommendWidget(NewsRecommendResponseEntity newsRecommend) {
+Widget recommendWidget(BuildContext context,NewsRecommendResponseEntity newsRecommend) {
   return Container(
     margin: EdgeInsets.all(duSetWidth(20)),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 图
-        imageCached(
-          newsRecommend.thumbnail!,
-          width: 335,
-          height: 290,
+        InkWell(
+          onTap: () {
+            context.pushRoute(DetailsRoute(title:newsRecommend.title,url:newsRecommend.url));
+          },
+          child: imageCached(
+            newsRecommend.thumbnail!,
+            width: 335,
+            height: 290,
+          ),
         ),
+        
         // 作者
         Container(
           margin: EdgeInsets.only(top: duSetHeight(14)),

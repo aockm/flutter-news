@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/common/apis/apis.dart';
 import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/router/router.dart';
 import 'package:news/common/utils/utils.dart';
 import 'package:news/common/values/values.dart';
 import 'package:news/common/widgets/widgets.dart';
@@ -26,8 +27,8 @@ class _SignInPageState extends State<SignInPage> {
   final TextEditingController _passController = TextEditingController();
  // 跳转 注册界面
   _handleNavSignUp() {
-    // ExtendedNavigator.rootNavigator.pushNamed(Routes.signUpPageRoute);
-    Navigator.pushNamed(context, '/sign-up');
+    // Navigator.pushNamed(context, '/sign-up');
+    context.pushRoute(SignUpRoute());
   }
 
   // 执行登录操作
@@ -36,9 +37,7 @@ class _SignInPageState extends State<SignInPage> {
        'email': _emailController.value.text,
        'password': duSHA256(_passController.value.text),
     };
-    log(data['password']!);
-    //  && data['password'] == '1f5b20f670a47e10fed7ecaa9f004bad3208259594ace98ab320f857aacc7fb2' 
-    // Navigator.pushNamed(context, '/app');
+    
     if (data['email'] == '3504747913@qq.com'  
       && data['password'] == '1f5b20f670a47e10fed7ecaa9f004bad3208259594ace98ab320f857aacc7fb2') {
       UserInfo userInfo = UserInfo(
@@ -47,7 +46,8 @@ class _SignInPageState extends State<SignInPage> {
         channels: ["bbc", "bloomberg"],
       );
       Global.saveProfile(userInfo);
-      Navigator.pushNamed(context, '/app');
+      // Navigator.pushNamed(context, '/app');
+      context.pushRoute(ApplicationRoute());
     }else {
       UserLoginResponseEntity userProfile = await UserAPI.login(
         context: context,
@@ -61,7 +61,8 @@ class _SignInPageState extends State<SignInPage> {
         channels: userProfile.channels!,
       );
         Global.saveProfile(userInfo);
-        Navigator.pushNamed(context, '/app');
+        // Navigator.pushNamed(context, '/app');
+        context.pushRoute(ApplicationRoute());
       }else {
         toastInfo(msg: userProfile.info!);
       }
@@ -175,7 +176,8 @@ class _SignInPageState extends State<SignInPage> {
                 // 注册
                 btnFlatButtonWidget(
                   onPressed: (){
-                    Navigator.pushNamed(context, '/sign-up');
+                    // Navigator.pushNamed(context, '/sign-up');
+                    context.pushRoute(SignUpRoute());
                   },
                   gbColor: AppColors.thirdElement,
                   title: "Sign up",

@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/common/utils/utils.dart';
 import 'package:news/common/values/values.dart';
@@ -7,6 +8,7 @@ import 'package:news/pages/bookmarks/bookmarks.dart';
 import 'package:news/pages/category/category.dart';
 import 'package:news/pages/main/main.dart';
 
+@RoutePage()
 class ApplicationPage extends StatefulWidget {
   const ApplicationPage({super.key});
 
