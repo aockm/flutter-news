@@ -57,16 +57,14 @@ dependencies:
   # 骨架屏 替换之前的pk_skeleton
   shimmer: ^3.0.0
   # skeletons: ^0.0.3
-  
   # 路由管理
   auto_route: ^10.1.0+1
-
   # 日期格式
   intl: ^0.19.0
   # webview
   webview_flutter: ^4.13.0
-
   share_plus: ^7.0.0
+  loading_animations: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +74,7 @@ dev_dependencies:
   # 路由生成
   auto_route_generator: ^10.1.0
   build_runner: ^2.4.15
+ 
   
 
 
