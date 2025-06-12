@@ -26,7 +26,7 @@ class NewsAPI {
   }
 
   /// 推荐
-  static Future<NewsRecommendResponseEntity> newsRecommend({
+  static Future<NewsItem> newsRecommend({
     required BuildContext context,
     Map<String,dynamic>? params,
     bool refresh = false,
@@ -40,7 +40,7 @@ class NewsAPI {
       cacheDisk: cacheDisk,
     );
    
-    return NewsRecommendResponseEntity.fromJson(response['data']);
+    return NewsItem.fromJson(response['data']);
   }
 
   /// 分类

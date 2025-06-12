@@ -29,16 +29,12 @@ class ApplicationRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [DetailsPage]
 class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
-  DetailsRoute({
-    Key? key,
-    String? title,
-    String? url,
-    List<PageRouteInfo>? children,
-  }) : super(
-         DetailsRoute.name,
-         args: DetailsRouteArgs(key: key, title: title, url: url),
-         initialChildren: children,
-       );
+  DetailsRoute({Key? key, NewsItem? item, List<PageRouteInfo>? children})
+    : super(
+        DetailsRoute.name,
+        args: DetailsRouteArgs(key: key, item: item),
+        initialChildren: children,
+      );
 
   static const String name = 'DetailsRoute';
 
@@ -48,34 +44,32 @@ class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
       final args = data.argsAs<DetailsRouteArgs>(
         orElse: () => const DetailsRouteArgs(),
       );
-      return DetailsPage(key: args.key, title: args.title, url: args.url);
+      return DetailsPage(key: args.key, item: args.item);
     },
   );
 }
 
 class DetailsRouteArgs {
-  const DetailsRouteArgs({this.key, this.title, this.url});
+  const DetailsRouteArgs({this.key, this.item});
 
   final Key? key;
 
-  final String? title;
-
-  final String? url;
+  final NewsItem? item;
 
   @override
   String toString() {
-    return 'DetailsRouteArgs{key: $key, title: $title, url: $url}';
+    return 'DetailsRouteArgs{key: $key, item: $item}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! DetailsRouteArgs) return false;
-    return key == other.key && title == other.title && url == other.url;
+    return key == other.key && item == other.item;
   }
 
   @override
-  int get hashCode => key.hashCode ^ title.hashCode ^ url.hashCode;
+  int get hashCode => key.hashCode ^ item.hashCode;
 }
 
 /// generated route for

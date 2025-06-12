@@ -1,11 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news/common/entitys/entitys.dart';
+import 'package:news/common/router/router.dart';
 import 'package:news/common/utils/date.dart';
 import 'package:news/common/utils/utils.dart';
 import 'package:news/common/values/values.dart';
 import 'package:news/common/widgets/widgets.dart';
 
-Widget newsItem(NewsItem item) {
+Widget newsItem(BuildContext context,NewsItem item) {
   return Container(
     height: duSetHeight(161),
     padding: EdgeInsets.all(duSetWidth(20)),
@@ -14,10 +16,17 @@ Widget newsItem(NewsItem item) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // 图
-        imageCached(
-          item.thumbnail!,
-          width: duSetWidth(121),
-          height: duSetWidth(121),
+        // 图
+        InkWell(
+          onTap: () {
+            context.pushRoute(DetailsRoute(item: item));
+          }
+          ,child: 
+            imageCached(
+              item.thumbnail!,
+              width: duSetWidth(121),
+              height: duSetWidth(121),
+            )
         ),
         // 右侧
         SizedBox(

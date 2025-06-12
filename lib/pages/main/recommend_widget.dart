@@ -8,7 +8,7 @@ import 'package:news/common/values/values.dart';
 import 'package:news/common/widgets/widgets.dart';
 
 // 推荐阅读
-Widget recommendWidget(BuildContext context,NewsRecommendResponseEntity newsRecommend) {
+Widget recommendWidget(BuildContext context,NewsItem item) {
   return Container(
     margin: EdgeInsets.all(duSetWidth(20)),
     child: Column(
@@ -17,10 +17,10 @@ Widget recommendWidget(BuildContext context,NewsRecommendResponseEntity newsReco
         // 图
         InkWell(
           onTap: () {
-            context.pushRoute(DetailsRoute(title:newsRecommend.title,url:newsRecommend.url));
+            context.pushRoute(DetailsRoute(item: item));
           },
           child: imageCached(
-            newsRecommend.thumbnail!,
+            item.thumbnail!,
             width: 335,
             height: 290,
           ),
@@ -30,7 +30,7 @@ Widget recommendWidget(BuildContext context,NewsRecommendResponseEntity newsReco
         Container(
           margin: EdgeInsets.only(top: duSetHeight(14)),
           child: Text(
-            newsRecommend.author!,
+            item.author!,
             style: TextStyle(
               fontFamily: 'Avenir',
               fontWeight: FontWeight.normal,
@@ -43,7 +43,7 @@ Widget recommendWidget(BuildContext context,NewsRecommendResponseEntity newsReco
         Container(
           margin: EdgeInsets.only(top: duSetHeight(10)),
           child: Text(
-            newsRecommend.title!,
+            item.title!,
             style: TextStyle(
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.w600,
@@ -65,7 +65,7 @@ Widget recommendWidget(BuildContext context,NewsRecommendResponseEntity newsReco
                   maxWidth: 120,
                 ),
                 child: Text(
-                  newsRecommend.category!,
+                  item.category!,
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontWeight: FontWeight.normal,
@@ -86,7 +86,7 @@ Widget recommendWidget(BuildContext context,NewsRecommendResponseEntity newsReco
                   maxWidth: 120,
                 ),
                 child: Text(
-                  '• ${duTimeLineFormat(newsRecommend.addtime!)}',
+                  '• ${duTimeLineFormat(item.addtime!)}',
                   style: TextStyle(
                     fontFamily: 'Avenir',
                     fontWeight: FontWeight.normal,

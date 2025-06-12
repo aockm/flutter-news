@@ -6,7 +6,6 @@ import 'package:news/common/router/router.dart';
 import 'package:news/common/utils/utils.dart';
 import 'package:news/common/values/values.dart';
 import 'package:news/global.dart';
-import 'package:news/pages/sign_in/sign_in.dart';
 
 /// 检查是否有 token
 Future<bool> isAuthenticated() async {

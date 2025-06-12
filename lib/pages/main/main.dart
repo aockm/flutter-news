@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
 
   late NewsPageListResponseEntity _newsPageList; // 新闻翻页
   late List<CategoryResponseEntity> _categories; // 分类
-  late NewsRecommendResponseEntity _newsRecommend; // 新闻推荐
+  late NewsItem _newsRecommend; // 新闻推荐
   late List<ChannelResponseEntity> _channels; // 频道
 
   String? _selCategoryCode; // 选中的分类Code
@@ -144,7 +144,7 @@ class _MainPageState extends State<MainPage> {
             children: _newsPageList.items!.map((item) {
               // 新闻行
               List<Widget> widgets = <Widget>[
-                newsItem(item),
+                newsItem(context,item),
                 Divider(height: 1),
               ];
               // 每 5 条 显示广告

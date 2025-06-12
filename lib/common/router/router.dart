@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:news/common/entitys/news.dart';
 import 'package:news/common/router/auth_guard.dart';
 import 'package:news/pages/application/application.dart';
 import 'package:news/pages/detail/details.dart';
