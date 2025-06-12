@@ -74,8 +74,12 @@ dev_dependencies:
   # 路由生成
   auto_route_generator: ^10.1.0
   build_runner: ^2.4.15
+  flutter_launcher_icons: ^0.14.4
  
-  
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon_1024.png" 
 
 
 flutter:
