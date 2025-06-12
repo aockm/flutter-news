@@ -4,6 +4,7 @@
     <application
         android:label="news"
         android:name="${applicationName}"
+        android:theme="@style/LaunchTheme"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
